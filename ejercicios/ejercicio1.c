@@ -12,23 +12,19 @@ int main() {
         printf("Error: No se pudo asignar memoria.\n");
         return 1; 
     }
-
-    printf("Ingrese %d valores:\t[\n", n);
+    printf("Ingrese %d valores:\n", n);
     for (int i = 0; i < n; i++) {
-        
-        printf("\t%d, %p", *(arr + i), (arr + i));
+        printf("Ingrese el valor #%d: ", i+1);
+        scanf ("%d", &*(arr+i));
     }
-    printf("\t]\n");
+
+    printf("El arreglo es: \n");
+    for (int i = 0; i < n; i++) {
+        printf("\t%d, %p \n", *(arr + i), (arr + i));
+    }
+    printf("\n");
 
     printf("Liberando el espacio reservado\n");
     free(arr);
-
-    /*printf("El arreglo es: ");
-    for (int i = 0; i < n; i++) {
-        
-    }
-    printf("\n");*/
-
-    
     return 0;
 }
