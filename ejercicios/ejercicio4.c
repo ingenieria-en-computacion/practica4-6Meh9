@@ -4,17 +4,16 @@
 
 // Crea un tipo de dato estudiante que guarde el nombre del estudiante max. 40 caracteres y su edad
 typedef struct estudiante{
-    char name[40];
-    int age; 
+    char neim[40];
+    int eig; 
 } Estudiante;
 
 int main() {
 
     int size = 2;
     // Crea un arreglo dinámico usando malloc de tamaño size
-    int *num;
-    num = malloc(sizeof(size));
-
+    Estudiante *num;
+    num = malloc(size * sizeof(Estudiante));
 
     //Si el arreglo es nulo imprime el mensaje
     if (num == NULL) {
@@ -25,26 +24,24 @@ int main() {
     int count = 0;
     char nombre[50];
     int edad;
+    num = (int*)calloc(size, sizeof(Estudiante));
  
     printf("Ingrese estudiantes (nombre y edad, ingrese 'fin' para terminar):\n");
     while (1) {
         printf("Nombre: ");
         scanf("%s", nombre);
-        Estudiante est;
-        est.name[count] = nombre;
+
         if (strcmp(nombre, "fin") == 0) break;
 
         printf("Edad: ");
         scanf("%d", &edad);
-        //Estudiante anios;
-        est.age = edad;
 
-        num = (int*)calloc(num, sizeof(int));
+
 
         if (count >= size) {
             size *= 2;
             //Cambia el tamaño del arreglo
-            num = (int*)realloc(num, 5*sizeof(int));
+            num = realloc(num, size * sizeof(Estudiante));
 
             //Verifica nuevamente que si apunta a nulo se imprima el error
             if (num == NULL) {
@@ -53,15 +50,15 @@ int main() {
             }
         }
         //copia el nombre leido en el nuevo estudiante y su edad
-        est.name[count] = nombre;
-        est.age = edad;
-        
+        strcpy(num[count].neim, nombre);
+        num[count].eig = edad;
+
         count++;
     }
 
     printf("Lista de estudiantes:\n");
     for (int i = 0; i < count; i++) {
-        printf("| %s, %d años \t |", est.name[i], est.age);
+        printf("| %s, %d anios \t |", num[i].neim, num[i].eig);
         
     }
 
